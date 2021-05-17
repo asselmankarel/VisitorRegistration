@@ -8,6 +8,11 @@ namespace VisitorRegistrationLibrary.DataAccess
     {
         private string FilePath = "";
 
+        public CsvConnector()
+        {
+
+        }
+
         public CsvConnector(string filePath)
         {
             FilePath = filePath;
@@ -32,6 +37,16 @@ namespace VisitorRegistrationLibrary.DataAccess
         }
 
         public List<CompanyModel> GetAllCompanies()
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<CompanyModel> GetCompany_All()
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<EmployeeModel> GetEmployeesByCompanyId(int companyId)
         {
             throw new NotImplementedException();
         }

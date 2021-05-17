@@ -1,6 +1,7 @@
 ﻿using System;
 using VisitorRegistrationLibrary.Models;
 using VisitorRegistrationLibrary.DataAccess;
+using VisitorRegistrationLibrary;
 
 namespace VisitorRegistrationConsoleUI
 {
@@ -11,8 +12,8 @@ namespace VisitorRegistrationConsoleUI
             //CompanyModel model = new CompanyModel();
             //model.Name = "AllPhi";
 
-            var sqlConn = new MySqlConnector();
-            var companyList = sqlConn.GetAllCompanies();
+            var conn = GlobalConfig.Connection();
+            var companyList = conn.GetCompany_All();
 
 
             Console.WriteLine("Companies:");
@@ -21,8 +22,9 @@ namespace VisitorRegistrationConsoleUI
                 Console.WriteLine($"Id: {company.Id}, Name: {company.Name}");
             }
 
-            Console.ReadLine();
 
+            //var types = model.GetType().GetProperties();
+            Console.ReadLine();
 
         }
     }
