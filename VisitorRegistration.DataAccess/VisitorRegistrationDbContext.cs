@@ -16,6 +16,9 @@ namespace VisitorRegistration.DataAccess
 
         #endregion
 
+        private string _connectionString { get; set; }
+
+        public VisitorRegistrationDbContext() {}
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -24,13 +27,14 @@ namespace VisitorRegistration.DataAccess
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            var configuration = new ConfigurationBuilder()
+            _connectionString ??= new ConfigurationBuilder()
                 .SetBasePath(Directory.GetParent(AppContext.BaseDirectory).FullName)
                 .SetBasePath(Directory.GetCurrentDirectory())
                 .AddJsonFile("appsettings.json", false)
-                .Build();
+                .Build().GetConnectionString("VisitorRegistration");
 
-            optionsBuilder.UseSqlServer(configuration.GetConnectionString("VisitorRegistration"));
+
+            optionsBuilder.UseSqlServer(_connectionString);
         }
     }
 }

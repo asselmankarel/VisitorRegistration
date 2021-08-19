@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using VisitorRegistration.DataAccess;
 
 namespace VisitorRegistration.DataAccess.Migrations
 {
     [DbContext(typeof(VisitorRegistrationDbContext))]
-    partial class VisitorRegistrationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210819112208_RemoveCreatedAtToRegistration")]
+    partial class RemoveCreatedAtToRegistration
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
