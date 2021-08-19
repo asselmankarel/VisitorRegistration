@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace VisitorRegistration.Core.Models
+namespace VisitorRegistration.Domain.Models
 {
     public class Registration
     {

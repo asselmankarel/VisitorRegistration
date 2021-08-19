@@ -16,7 +16,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\VisitorRegistration.Core\VisitorRegistration.Core.csproj" />
+    <ProjectReference Include="..\VisitorRegistration.Domain\VisitorRegistration.Domain.csproj" />
   </ItemGroup>
 
 </Project>

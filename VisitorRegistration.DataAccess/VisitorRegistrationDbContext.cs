@@ -2,7 +2,7 @@
 using Microsoft.Extensions.Configuration;
 using System;
 using System.IO;
-using VisitorRegistration.Core.Models;
+using VisitorRegistration.Domain.Models;
 
 namespace VisitorRegistration.DataAccess
 {

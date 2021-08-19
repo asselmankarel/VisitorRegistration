@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
-namespace VisitorRegistration.Core.Models
+namespace VisitorRegistration.Domain.Models
 {
     public class Company
     {

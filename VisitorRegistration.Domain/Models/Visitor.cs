@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace VisitorRegistration.Core.Models
+namespace VisitorRegistration.Domain.Models
 {
     public class Visitor : Person
     {
