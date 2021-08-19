@@ -1,9 +1,8 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
-using Microsoft.EntityFrameworkCore;
 using VisitorRegistration.Domain.Models;
 
 namespace VisitorRegistration.DataAccess.Services
@@ -50,9 +49,24 @@ namespace VisitorRegistration.DataAccess.Services
             return result;
         }
 
-        public Task<List<Registration>> GetAllRegistrationsForCurrentDay()
+        public async Task<List<Registration>> GetAllRegistrationsForCurrentDay()
         {
-            throw new NotImplementedException();
+            var date = DateTime.Now;
+            var result = await _dbContext.Registrations
+                .Where(r =>
+                    r.StartOfVisit.Year == date.Year &&
+                    r.StartOfVisit.DayOfYear == date.DayOfYear)
+                .ToListAsync();
+
+            return result;
+        }
+
+        public async Task<bool> Add(Registration registration)
+        {
+            await _dbContext.Registrations.AddAsync(registration);
+            var numberOfSavedChanges = await _dbContext.SaveChangesAsync();
+     
+            return numberOfSavedChanges == 1;
         }
     }
 }

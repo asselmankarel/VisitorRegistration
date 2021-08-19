@@ -6,6 +6,10 @@ namespace VisitorRegistration.DataAccess.Services
 {
     public interface IRegistrationDataAccess
     {
+        Task<bool> add(Registration registration);
+
+        Task<bool> update(Registration registration);
+
         Task<Registration> GetById(int id);
 
         Task<Registration> GetCurrentDayOpenRegistrationByVisitorId(int visitorId);

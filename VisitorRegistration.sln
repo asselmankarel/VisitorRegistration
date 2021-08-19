@@ -13,7 +13,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VisitorRegistration.Domain"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Test", "Test", "{2640E923-CFA1-4DF0-BEA8-2FDC52B6656A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VisitorRegistration.Test", "VisitorRegistration.Test\VisitorRegistration.Test.csproj", "{7BC0F05F-7FE3-4C96-9269-6F4641ADCC8A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VisitorRegistration.Test", "VisitorRegistration.Test\VisitorRegistration.Test.csproj", "{7BC0F05F-7FE3-4C96-9269-6F4641ADCC8A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VisitorRegistration.BL", "VisitorRegistration.BL\VisitorRegistration.BL.csproj", "{58A313ED-74F4-438E-A034-D8AD17E66E72}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{7BC0F05F-7FE3-4C96-9269-6F4641ADCC8A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7BC0F05F-7FE3-4C96-9269-6F4641ADCC8A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7BC0F05F-7FE3-4C96-9269-6F4641ADCC8A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{58A313ED-74F4-438E-A034-D8AD17E66E72}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{58A313ED-74F4-438E-A034-D8AD17E66E72}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{58A313ED-74F4-438E-A034-D8AD17E66E72}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{58A313ED-74F4-438E-A034-D8AD17E66E72}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -41,6 +47,7 @@ Global
 		{B649DE1B-E4C5-4B36-9A3C-3DC683E2B932} = {E7434BC8-2225-4F86-884F-6A4B535121DE}
 		{D0392946-9A80-4562-94C0-D29435D23C39} = {8161F94F-9108-4123-93F6-EE3A38E0CFBE}
 		{7BC0F05F-7FE3-4C96-9269-6F4641ADCC8A} = {2640E923-CFA1-4DF0-BEA8-2FDC52B6656A}
+		{58A313ED-74F4-438E-A034-D8AD17E66E72} = {8161F94F-9108-4123-93F6-EE3A38E0CFBE}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {0BB6A73C-396B-4A98-9421-4F0F86E4BB1C}
