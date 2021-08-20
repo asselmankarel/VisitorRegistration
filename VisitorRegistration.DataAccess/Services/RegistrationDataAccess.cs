@@ -64,9 +64,9 @@ namespace VisitorRegistration.DataAccess.Services
         public async Task<bool> Add(Registration registration)
         {
             await _dbContext.Registrations.AddAsync(registration);
-            var numberOfSavedChanges = await _dbContext.SaveChangesAsync();
-     
-            return numberOfSavedChanges == 1;
+            await _dbContext.SaveChangesAsync();
+            
+            return registration.Id > 0;
         }
 
         public Task<bool> add(Registration registration)
