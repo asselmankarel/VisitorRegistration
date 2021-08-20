@@ -68,5 +68,15 @@ namespace VisitorRegistration.DataAccess.Services
      
             return numberOfSavedChanges == 1;
         }
+
+        public Task<bool> add(Registration registration)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<bool> update(Registration registration)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

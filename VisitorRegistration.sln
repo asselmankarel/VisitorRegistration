@@ -5,9 +5,9 @@ VisualStudioVersion = 16.0.809.8
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VisitorRegistration.DataAccess", "VisitorRegistration.DataAccess\VisitorRegistration.DataAccess.csproj", "{B649DE1B-E4C5-4B36-9A3C-3DC683E2B932}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{8161F94F-9108-4123-93F6-EE3A38E0CFBE}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "03 - Core", "03 - Core", "{8161F94F-9108-4123-93F6-EE3A38E0CFBE}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DAL", "DAL", "{E7434BC8-2225-4F86-884F-6A4B535121DE}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "04 - DAL", "04 - DAL", "{E7434BC8-2225-4F86-884F-6A4B535121DE}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VisitorRegistration.Domain", "VisitorRegistration.Domain\VisitorRegistration.Domain.csproj", "{D0392946-9A80-4562-94C0-D29435D23C39}"
 EndProject
@@ -15,7 +15,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Test", "Test", "{2640E923-C
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VisitorRegistration.Test", "VisitorRegistration.Test\VisitorRegistration.Test.csproj", "{7BC0F05F-7FE3-4C96-9269-6F4641ADCC8A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VisitorRegistration.BL", "VisitorRegistration.BL\VisitorRegistration.BL.csproj", "{58A313ED-74F4-438E-A034-D8AD17E66E72}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VisitorRegistration.BL", "VisitorRegistration.BL\VisitorRegistration.BL.csproj", "{58A313ED-74F4-438E-A034-D8AD17E66E72}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "01 - Presentation", "01 - Presentation", "{E5BE30AD-66C9-4706-832C-384935BD8DF7}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "02 - Api", "02 - Api", "{6BC2AC12-04B7-4D9B-8A73-1A4E10F173F5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

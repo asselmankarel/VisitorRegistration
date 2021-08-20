@@ -20,6 +20,11 @@ namespace VisitorRegistration.DataAccess
 
         public VisitorRegistrationDbContext() {}
 
+        public VisitorRegistrationDbContext(string connectionString)
+        {
+            _connectionString = connectionString;
+        }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);

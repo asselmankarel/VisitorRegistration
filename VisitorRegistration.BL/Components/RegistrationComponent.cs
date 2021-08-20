@@ -4,7 +4,7 @@ using VisitorRegistration.BL.Requests;
 using VisitorRegistration.BL.Responses;
 using VisitorRegistration.DataAccess.Services;
 
-namespace VisitorRegistration.BL
+namespace VisitorRegistration.BL.Components
 {
     public class RegistrationComponent
     {
@@ -27,12 +27,12 @@ namespace VisitorRegistration.BL
 
         public async Task<ResponseBase> CheckIn(CheckInRequest request)
         {
-
+            return await Task.FromResult(new CheckInResponse());
         }
 
         public async Task<ResponseBase> CheckOut(CheckOutRequest request)
         {
-
+            return await Task.FromResult(new CheckOutResponse());
         }
 
     }
