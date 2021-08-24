@@ -28,7 +28,8 @@ namespace VisitorRegistration.Mvc.Models
 
             foreach(var company in companies)
             {
-                Companies.Add(_mapper.Map<CompanyViewModel>(company));
+                var cvm = _mapper.Map<CompanyViewModel>(company);
+                Companies.Add(cvm);
             }
         }
        

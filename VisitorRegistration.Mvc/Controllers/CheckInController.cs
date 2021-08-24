@@ -55,10 +55,10 @@ namespace VisitorRegistration.Mvc.Controllers
 
 
         [HttpPost]
-        public IActionResult SaveNewVisitor([FromBody] Visitor visitor)
+        public IActionResult SaveNewVisitor(VisitorViewModel visitorViewModel)
         {
             
-            var request = visitor;
+            var request = visitorViewModel;
 
             var companyListViewModel = new CompanyListViewModel(_companyDataAccess, _mapper);
           
