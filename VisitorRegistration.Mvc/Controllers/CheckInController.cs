@@ -1,9 +1,10 @@
-﻿using System.Linq;
-using System.Threading.Tasks;
-using AutoMapper;
+﻿using AutoMapper;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using System.Linq;
+using System.Threading.Tasks;
+using VisitorRegistration.BL.Requests;
 using VisitorRegistration.DataAccess.Services;
 using VisitorRegistration.Domain.Models;
 using VisitorRegistration.Mvc.Models;
@@ -12,22 +13,23 @@ namespace VisitorRegistration.Mvc.Controllers
 {
     public class CheckInController : Controller
     {
-        private ILogger<CheckInController> _logger;
-        private IVisitorDataAccess _visitorDataAccess;
+        private readonly ILogger<CheckInController> _logger;
+        private readonly IVisitorDataAccess _visitorDataAccess;
+        private readonly ICompanyDataAccess _companyDataAccess;
         private readonly IMapper _mapper;
-        private readonly ISession _session;
-
+ 
         public CheckInController(
             ILogger<CheckInController> logger,
             IVisitorDataAccess visitorDataAccess,
-            IMapper mapper,
-            ISession session)
+            ICompanyDataAccess companyDataAccess,
+            IMapper mapper)
         {
             _logger = logger;
             _visitorDataAccess = visitorDataAccess;
-            _mapper = mapper;
-            _session = session;
+            _companyDataAccess = companyDataAccess;
+            _mapper = mapper;            
         }
+
         public IActionResult Index()
         {
             return View();
@@ -44,8 +46,23 @@ namespace VisitorRegistration.Mvc.Controllers
             }
 
             var visitorViewModel = _mapper.Map<VisitorViewModel>(visitor);
-            _session.Set("user_id", visitorViewModel);
+            HttpContext.Session.SetInt32("user_id", visitorViewModel.Id);
+            HttpContext.Session.SetString("user_email", visitorViewModel.Email);
+            HttpContext.Session.SetString("user_firstname", visitorViewModel.Firstname);
+
             return View("CompanySelection", visitorViewModel);
+        }
+
+
+        [HttpPost]
+        public IActionResult SaveNewVisitor([FromBody] Visitor visitor)
+        {
+            
+            var request = visitor;
+
+            var companyListViewModel = new CompanyListViewModel(_companyDataAccess, _mapper);
+          
+            return View("CompanySelection", companyListViewModel);
         }
     }
 }

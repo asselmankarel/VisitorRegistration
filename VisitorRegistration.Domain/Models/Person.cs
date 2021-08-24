@@ -7,10 +7,10 @@ namespace VisitorRegistration.Domain.Models
         public int Id { get; set; }
 
         [StringLength(256, MinimumLength = 2)]
-        public string FirstName { get; set; }
+        public string Firstname { get; set; }
 
         [StringLength(256, MinimumLength = 2)]
-        public string LastName { get; set; }
+        public string Lastname { get; set; }
 
         private string _email;
         [StringLength(256, MinimumLength = 2), EmailAddress]

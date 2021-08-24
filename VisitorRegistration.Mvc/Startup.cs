@@ -1,16 +1,11 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using VisitorRegistration.DataAccess;
 using VisitorRegistration.DataAccess.Services;
-using AutoMapper;
-
 
 namespace VisitorRegistration.Mvc
 {
@@ -33,7 +28,9 @@ namespace VisitorRegistration.Mvc
                 options.Cookie.HttpOnly = true;
                 options.Cookie.IsEssential = true;
             });
+            services.AddScoped<VisitorRegistrationDbContext>();
             services.AddScoped<IVisitorDataAccess, VisitorDataAccess>();
+            services.AddScoped<ICompanyDataAccess, CompanyDataAccess>();
             services.AddAutoMapper(typeof(AutoMapperProfiles.VisitorProfile));
             services.AddControllersWithViews();
         }

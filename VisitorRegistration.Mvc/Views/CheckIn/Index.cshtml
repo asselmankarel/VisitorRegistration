@@ -2,16 +2,16 @@
 @{
     ViewData["Title"] = "CheckIn";
 }
-<div class="w-75">
+<div class="w-50 mx-auto">
     <h1 class="m-5">CheckIn</h1>
 
-    <form method="post" asp-controller="CheckIn" asp-action="Visitor" class="m-5">
+    <form method="post" asp-controller="CheckIn" asp-action="Visitor" >
         <div class="form-group">
             <label for="Email" >Email</label>
-            <input type="email" id="Email" name="Email" class="form-control" />
+            <input type="email" id="Email" name="Email" class="form-control w-50" />
         </div>
 
-        <div class="form-group m-4">
+        <div class="form-group mt-4">
             <button type="submit" class="btn btn-lg btn-primary">Next</button>
         </div>
     </form>

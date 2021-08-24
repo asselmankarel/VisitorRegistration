@@ -11,6 +11,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\VisitorRegistration.BL\VisitorRegistration.BL.csproj" />
     <ProjectReference Include="..\VisitorRegistration.DataAccess\VisitorRegistration.DataAccess.csproj" />
   </ItemGroup>
 

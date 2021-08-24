@@ -8,9 +8,9 @@ namespace VisitorRegistration.Mvc.Models
     public class EmployeeViewModel
     {
         public int Id { get; init; }
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
+        public string Firstname { get; set; }
+        public string Lastname { get; set; }
 
-        public string FullName => $"{FirstName} {LastName}";
+        public string Fullname => $"{Firstname} {Lastname}";
     }
 }
