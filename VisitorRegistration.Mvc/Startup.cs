@@ -8,6 +8,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using VisitorRegistration.DataAccess.Services;
+using AutoMapper;
+
 
 namespace VisitorRegistration.Mvc
 {
@@ -23,6 +26,15 @@ namespace VisitorRegistration.Mvc
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddDistributedMemoryCache();
+            services.AddSession(options =>
+            {
+                options.IdleTimeout = TimeSpan.FromSeconds(10);
+                options.Cookie.HttpOnly = true;
+                options.Cookie.IsEssential = true;
+            });
+            services.AddScoped<IVisitorDataAccess, VisitorDataAccess>();
+            services.AddAutoMapper(typeof(AutoMapperProfiles.VisitorProfile));
             services.AddControllersWithViews();
         }
 
@@ -45,6 +57,8 @@ namespace VisitorRegistration.Mvc
             app.UseRouting();
 
             app.UseAuthorization();
+
+            app.UseSession();
 
             app.UseEndpoints(endpoints =>
             {
