@@ -1,0 +1,19 @@
+﻿@model CompanyListViewModel
+
+@{
+    ViewData["Title"] = "CompanySelection";
+}
+
+<div class="container w-50 mx-auto">
+    <h1>Select company</h1>
+    <form method="post">
+        <div class="form-group">
+            <select class="form-control" asp-for="CompanyId" asp-items="@(new SelectList(Model.Companies, "Id", "Name"))"/>
+
+            <button type="submit" class="btn btn-primary btn-lg">Next</button>
+        </div>
+    </form>
+
+
+</div>
+

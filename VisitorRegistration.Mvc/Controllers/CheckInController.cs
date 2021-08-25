@@ -2,9 +2,7 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using System.Linq;
 using System.Threading.Tasks;
-using VisitorRegistration.BL.Requests;
 using VisitorRegistration.DataAccess.Services;
 using VisitorRegistration.Domain.Models;
 using VisitorRegistration.Mvc.Models;
@@ -36,9 +34,8 @@ namespace VisitorRegistration.Mvc.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Visitor()
+        public async Task<IActionResult> Visitor(string email)
         {
-            var email = HttpContext.Request.Form["Email"].FirstOrDefault()?.ToLower();
             var visitor = await _visitorDataAccess.GetByEmail(email);
             if (visitor == null)
             {
@@ -46,23 +43,32 @@ namespace VisitorRegistration.Mvc.Controllers
             }
 
             var visitorViewModel = _mapper.Map<VisitorViewModel>(visitor);
-            HttpContext.Session.SetInt32("user_id", visitorViewModel.Id);
-            HttpContext.Session.SetString("user_email", visitorViewModel.Email);
-            HttpContext.Session.SetString("user_firstname", visitorViewModel.Firstname);
+            SetVisitorSessionData(visitorViewModel.Id, visitorViewModel.Email, visitorViewModel.Firstname);
+            var companyListViewModel = new CompanyListViewModel(_companyDataAccess, _mapper);
 
-            return View("CompanySelection", visitorViewModel);
+            return View("CompanySelection", companyListViewModel);
         }
 
-
         [HttpPost]
-        public IActionResult SaveNewVisitor(VisitorViewModel visitorViewModel)
+        public async Task<IActionResult> SaveNewVisitor(VisitorViewModel visitorViewModel)
         {
-            
-            var request = visitorViewModel;
+            if (!ModelState.IsValid) return View("NewVisitor",visitorViewModel);
 
+            var body = HttpContext.Request.Body;
+            var visitor = await _visitorDataAccess.Add(_mapper.Map<Visitor>(visitorViewModel));
+            SetVisitorSessionData(visitorViewModel.Id, visitorViewModel.Email, visitorViewModel.Firstname);
             var companyListViewModel = new CompanyListViewModel(_companyDataAccess, _mapper);
           
             return View("CompanySelection", companyListViewModel);
+        }
+
+
+
+        private void SetVisitorSessionData(int id, string email, string firstname)
+        {
+            HttpContext.Session.SetInt32("user_id", id);
+            HttpContext.Session.SetString("user_email", email);
+            HttpContext.Session.SetString("user_firstname", firstname);
         }
     }
 }

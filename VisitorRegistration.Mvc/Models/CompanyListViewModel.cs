@@ -1,9 +1,6 @@
-﻿using System;
+﻿using AutoMapper;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using VisitorRegistration.DataAccess.Services;
-using AutoMapper;
 
 namespace VisitorRegistration.Mvc.Models
 {
@@ -13,6 +10,9 @@ namespace VisitorRegistration.Mvc.Models
         private readonly ICompanyDataAccess _companyDataAccess;
         private readonly IMapper _mapper;
 
+        public List<CompanyViewModel> Companies { get; private set; }
+        public int CompanyId { get; set; }
+
         public CompanyListViewModel(ICompanyDataAccess companyDataAccess, IMapper mapper)
         {
             _companyDataAccess = companyDataAccess;
@@ -20,16 +20,15 @@ namespace VisitorRegistration.Mvc.Models
             LoadCompanies();
         }
 
-        public List<CompanyViewModel> Companies { get; private set; }
 
         private async void LoadCompanies()
         {
             var companies = await _companyDataAccess.GetAll();
+            Companies = new List<CompanyViewModel>();
 
-            foreach(var company in companies)
-            {
-                var cvm = _mapper.Map<CompanyViewModel>(company);
-                Companies.Add(cvm);
+            foreach (var company in companies)
+            {                
+                Companies.Add(_mapper.Map<CompanyViewModel>(company));
             }
         }
        

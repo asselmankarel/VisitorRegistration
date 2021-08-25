@@ -32,6 +32,8 @@ namespace VisitorRegistration.Mvc
             services.AddScoped<IVisitorDataAccess, VisitorDataAccess>();
             services.AddScoped<ICompanyDataAccess, CompanyDataAccess>();
             services.AddAutoMapper(typeof(AutoMapperProfiles.VisitorProfile));
+            services.AddHttpContextAccessor();
+
             services.AddControllersWithViews();
         }
 
@@ -50,12 +52,12 @@ namespace VisitorRegistration.Mvc
             }
             app.UseHttpsRedirection();
             app.UseStaticFiles();
+            app.UseSession();
 
             app.UseRouting();
 
             app.UseAuthorization();
 
-            app.UseSession();
 
             app.UseEndpoints(endpoints =>
             {
