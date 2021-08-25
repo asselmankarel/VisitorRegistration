@@ -4,6 +4,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using System;
+using VisitorRegistration.BL.Components;
 using VisitorRegistration.DataAccess;
 using VisitorRegistration.DataAccess.Services;
 
@@ -31,6 +32,9 @@ namespace VisitorRegistration.Mvc
             services.AddScoped<VisitorRegistrationDbContext>();
             services.AddScoped<IVisitorDataAccess, VisitorDataAccess>();
             services.AddScoped<ICompanyDataAccess, CompanyDataAccess>();
+            services.AddScoped<IEmployeeDataAccess, EmployeeDataAccess>();
+            services.AddScoped<IRegistrationDataAccess, RegistrationDataAccess>();
+            services.AddScoped<RegistrationComponent>();
             services.AddAutoMapper(typeof(AutoMapperProfiles.VisitorProfile));
             services.AddHttpContextAccessor();
 

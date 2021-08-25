@@ -14,9 +14,19 @@ namespace VisitorRegistration.DataAccess.Services
             _dbContext = dbContext;
         }
 
+        public async Task<List<Employee>> GetAll()
+        {
+            return await _dbContext.Employees.ToListAsync();
+        }
+
         public async Task<List<Employee>> GetByCompanyId(int companyId)
         {
             return await _dbContext.Employees.Where(e => e.Company.Id == companyId).ToListAsync();
+        }
+
+        public async Task<Employee> GetById(int employeeId)
+        {
+            return await _dbContext.Employees.FindAsync(employeeId);
         }
     }
 }

@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using VisitorRegistration.BL.Requests;
 using VisitorRegistration.BL.Responses;
 using VisitorRegistration.DataAccess.Services;
+using VisitorRegistration.Domain.Models;
 
 namespace VisitorRegistration.BL.Components
 {
@@ -25,9 +26,21 @@ namespace VisitorRegistration.BL.Components
             _visitorDataAccess = visitorDataAccess;
         }
 
-        public async Task<ResponseBase> CheckIn(CheckInRequest request)
+        public ResponseBase CheckIn(CheckInRequest request)
         {
-            return await Task.FromResult(new CheckInResponse());
+            var visitor = _visitorDataAccess.GetById(request.VisitorId).Result;
+            var company = _companyDataAccess.GetById(request.CompanyId).Result;
+            var employee = _employeeDataAccess.GetById(request.EmployeeId).Result;
+            var response = new CheckInResponse();
+
+            if (visitor != null && company != null && employee != null)
+            {
+                if (_registrationDataAccess.add(new Registration { Visitor = visitor, Employee = employee, StartOfVisit = request.StartOfVisit }).Result)
+                    return response;
+            }
+
+            response.AddErrorMessage("Invalid request");
+            return response;
         }
 
         public async Task<ResponseBase> CheckOut(CheckOutRequest request)

@@ -71,7 +71,10 @@ namespace VisitorRegistration.DataAccess.Services
 
         public Task<bool> add(Registration registration)
         {
-            throw new NotImplementedException();
+            var reg = _dbContext.Registrations.Add(registration);
+            if (reg.Entity.Id > 0) return Task.FromResult(true);
+
+            return Task.FromResult(false);
         }
 
         public Task<bool> update(Registration registration)

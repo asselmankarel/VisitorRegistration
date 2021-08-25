@@ -1,13 +1,16 @@
-﻿using VisitorRegistration.Domain.Models;
+﻿using System;
+using VisitorRegistration.Domain.Models;
 
 namespace VisitorRegistration.BL.Requests
 {
     public class CheckInRequest
     {
-        public Visitor Visitor { get; init; }
+        public int VisitorId { get; init; }
 
-        public Company Company { get; init; }
+        public int CompanyId { get; init; }
 
-        public Employee Employee { get; init; }
+        public int EmployeeId { get; init; }
+
+        public DateTime StartOfVisit { get; init; } = DateTime.Now;
     }
 }

@@ -20,10 +20,9 @@ namespace VisitorRegistration.Mvc.Models
             LoadCompanies();
         }
 
-
-        private async void LoadCompanies()
+        private void LoadCompanies()
         {
-            var companies = await _companyDataAccess.GetAll();
+            var companies = _companyDataAccess.GetAll().Result;
             Companies = new List<CompanyViewModel>();
 
             foreach (var company in companies)

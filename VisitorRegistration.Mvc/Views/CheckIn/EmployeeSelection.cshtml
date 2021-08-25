@@ -1,0 +1,19 @@
+﻿@model EmployeeListViewModel
+
+@{
+    ViewData["Title"] = "Employee Selection";
+}
+
+<div class="container w-50 mx-auto">
+    <h1 class="m-5 text-center">Employee</h1>
+    <form method="post" asp-controller="CheckIn" asp-action="EmployeeSelected">
+        <div class="form-group mb-5">
+            <select class="form-control" asp-for="EmployeeId" asp-items="@(new SelectList(Model.Employees, "Id", "Fullname"))" >
+                <option>Select contact</option>
+            </select>
+        </div>
+        <button type="submit" class="btn btn-primary btn-lg mx-auto">Check in</button>
+    </form>
+
+</div>
+
