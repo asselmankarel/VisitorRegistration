@@ -33,14 +33,28 @@ namespace VisitorRegistration.BL.Components
             var employee = _employeeDataAccess.GetById(request.EmployeeId).Result;
             var response = new CheckInResponse();
 
-            if (visitor != null && company != null && employee != null)
+            if (visitor == null || company == null || employee == null)
             {
-                if (_registrationDataAccess.add(new Registration { Visitor = visitor, Employee = employee, StartOfVisit = request.StartOfVisit }).Result)
-                    return response;
+                response.AddErrorMessage("Invalid request");
+                return response;
+            }
+            
+            if (!_registrationDataAccess.OpenRegistrationForCurrentDayForVisitor(visitor.Id).Result)  
+            {
+                response.AddErrorMessage("Already checked in");
+                return response;
             }
 
-            response.AddErrorMessage("Invalid request");
+            if (_registrationDataAccess.add(new Registration { Visitor = visitor, Employee = employee, StartOfVisit = request.StartOfVisit }).Result)
+                    return response;
+            
             return response;
+        }
+
+        private bool VisitorAlreadyCheckedIn(Visitor visitor)
+        {
+            
+            throw new NotImplementedException();
         }
 
         public async Task<ResponseBase> CheckOut(CheckOutRequest request)

@@ -23,7 +23,7 @@ namespace VisitorRegistration.DataAccess.Services
             return result;
         }
 
-        public async Task<Registration> GetCurrentDayOpenRegistrationByVisitorId(int visitorId)
+        public async Task<bool> OpenRegistrationForCurrentDayForVisitor(int visitorId)
         {
             var date = DateTime.Now;
             var result = await _dbContext.Registrations
@@ -34,7 +34,7 @@ namespace VisitorRegistration.DataAccess.Services
                     r.EndOfVisit == null)
                 .FirstOrDefaultAsync();
 
-            return result;
+            return result == null;
         }
 
         public async Task<List<Registration>> GetAllOpenRegistrationsForCurrentDay()
@@ -72,6 +72,8 @@ namespace VisitorRegistration.DataAccess.Services
         public Task<bool> add(Registration registration)
         {
             var reg = _dbContext.Registrations.Add(registration);
+            _dbContext.SaveChanges();
+
             if (reg.Entity.Id > 0) return Task.FromResult(true);
 
             return Task.FromResult(false);

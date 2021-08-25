@@ -101,7 +101,7 @@ namespace VisitorRegistration.Mvc.Controllers
             HttpContext.Session.Clear();
             if (response.Successful) return View("CheckInCompleted");
 
-            return View("Error", new ErrorViewModel { });            
+            return View("CheckInFailed", response);            
         }
 
         private void SetVisitorSessionData(int id, string email, string firstname)
