@@ -39,7 +39,7 @@ namespace VisitorRegistration.BL.Components
                 return response;
             }
             
-            if (!_registrationDataAccess.OpenRegistrationForCurrentDayForVisitor(visitor.Id).Result)  
+            if (VisitorAlreadyCheckedIn(visitor))  
             {
                 response.AddErrorMessage("Already checked in");
                 return response;
@@ -53,13 +53,24 @@ namespace VisitorRegistration.BL.Components
 
         private bool VisitorAlreadyCheckedIn(Visitor visitor)
         {
-            
-            throw new NotImplementedException();
+            return _registrationDataAccess.OpenRegistrationForCurrentDayForVisitor(visitor.Id).Result;
         }
 
         public async Task<ResponseBase> CheckOut(CheckOutRequest request)
         {
-            return await Task.FromResult(new CheckOutResponse());
+            ResponseBase response = new CheckOutResponse();
+            if (!VisitorAlreadyCheckedIn(request.Visitor))
+            {
+                response.AddErrorMessage($"No checkin found for {request.Visitor.Email}");
+                return await Task.FromResult(response);
+            }
+
+            var registration = await _registrationDataAccess.GetOpenRegistrationForVisitor(request.Visitor.Id);
+            registration.EndOfVisit = DateTime.Now;
+            var result = await _registrationDataAccess.update(registration);
+            if (!result) response.AddErrorMessage("Unable to checkout");
+
+            return response;
         }
 
     }

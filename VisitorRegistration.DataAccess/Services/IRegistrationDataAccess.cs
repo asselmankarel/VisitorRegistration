@@ -12,6 +12,8 @@ namespace VisitorRegistration.DataAccess.Services
 
         Task<Registration> GetById(int id);
 
+        Task<Registration> GetOpenRegistrationForVisitor(int visitorId);
+
         Task<bool> OpenRegistrationForCurrentDayForVisitor(int visitorId);
 
         Task<List<Registration>> GetAllOpenRegistrationsForCurrentDay();

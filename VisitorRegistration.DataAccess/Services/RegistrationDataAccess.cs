@@ -34,7 +34,7 @@ namespace VisitorRegistration.DataAccess.Services
                     r.EndOfVisit == null)
                 .FirstOrDefaultAsync();
 
-            return result == null;
+            return result != null;
         }
 
         public async Task<List<Registration>> GetAllOpenRegistrationsForCurrentDay()
@@ -81,7 +81,19 @@ namespace VisitorRegistration.DataAccess.Services
 
         public Task<bool> update(Registration registration)
         {
-            throw new NotImplementedException();
+            var updatedRegistration =  _dbContext.Registrations.Update(registration);
+            _dbContext.SaveChanges();
+
+            if (updatedRegistration.Entity.EndOfVisit != null) return Task.FromResult(true);
+
+            return Task.FromResult(false);            
+        }
+
+        public async Task<Registration> GetOpenRegistrationForVisitor(int visitorId)
+        {
+            return await _dbContext.Registrations
+                .Where(r => r.Visitor.Id == visitorId && r.EndOfVisit == null)
+                .FirstOrDefaultAsync();
         }
     }
 }

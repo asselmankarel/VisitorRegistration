@@ -1,14 +1,17 @@
 ﻿@model ResponseBase
+
 @{
     ViewData["Title"] = "CheckInFailed";
 }
 
 <div class="container w-50 mx-auto" >
     <h1 class="text-center mt-5">Check In Failed</h1>
+
     @foreach(var error in Model.ErrorMessages)
      {
         <p class="alert-danger mt-5 p-3 font-weight-bold border-danger rounded text-center">@error</p>
      }
+
     <div class="d-flex justify-content-center">
         <div>
             <a asp-controller="CheckIn" asp-action="Index" class="btn btn-outline-warning btn-lg">Home</a>
