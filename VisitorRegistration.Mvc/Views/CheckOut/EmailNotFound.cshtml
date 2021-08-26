@@ -3,7 +3,9 @@
 @{
     ViewData["Title"] = "Email Not Found";
 }
-<div class="container w-50 mx-auto m-5" >
-    <p class="alert-danger p-3 border-danger rounded">Email: @Model Not Found</p>
+<div class="container w-50 mx-auto my-5">
+    <p class="alert-danger p-3 border-danger rounded font-weight-bold">Email: @Model Not Found</p>
+
+    <a asp-controller="Home" asp-action="Index" class="btn btn-primary btn-lg">Home</a>
 </div>
 

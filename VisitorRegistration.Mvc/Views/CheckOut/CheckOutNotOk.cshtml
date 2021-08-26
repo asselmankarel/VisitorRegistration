@@ -1,0 +1,16 @@
+﻿@model ResponseBase
+@{
+    ViewData["Title"] = "CheckOutNotOk";
+}
+
+<div class="container w-50 mx-auto my-5">
+    <h1 class="mb-5">Checkout Not Ok</h1>
+
+    @foreach(var error in Model.ErrorMessages)
+    {
+        <p class="alert-danger border-danger rounded p-3 my-2 font-weight-bold">@error</p>
+    }
+
+    <a asp-controller="Home" asp-action="Index" class="btn btn-primary btn-lg">Home</a>
+</div>
+

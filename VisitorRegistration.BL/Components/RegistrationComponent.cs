@@ -61,7 +61,7 @@ namespace VisitorRegistration.BL.Components
             ResponseBase response = new CheckOutResponse();
             if (!VisitorAlreadyCheckedIn(request.Visitor))
             {
-                response.AddErrorMessage($"No checkin found for {request.Visitor.Email}");
+                response.AddErrorMessage($"No registration found for {request.Visitor.Email}");
                 return await Task.FromResult(response);
             }
 
